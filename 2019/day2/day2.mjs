@@ -1,4 +1,5 @@
-import fs from "fs";
+// import fs from "fs";
+const fs = require("fs");
 
 const intProgram = (opCode, val1, val2, outPos, arr) => {
   switch (opCode) {
@@ -24,7 +25,7 @@ const intProgram = (opCode, val1, val2, outPos, arr) => {
   }
 };
 
-const file = fs.readFileSync("input.txt", "utf-8");
+const file = fs.readFileSync(`${__dirname}/input.txt`, "utf-8");
 
 const line = file.toString();
 // const line = "1,1,1,4,99,5,6,0,99";
@@ -35,24 +36,25 @@ let arr = line.split(",").map(function (item) {
 });
 const length = arr.length;
 
-const originalArr = arr;
+const originalArr = [...arr];
 
 const globalMemory = {};
 
-for (let x = 0; x < 99; x++) {
-  for (let y = 0; y < 99; y++) {
+top: for (let x = 0; x <= 99; x++) {
+  // console.log(x)
+  for (let y = 0; y <= 99; y++) {
     arr[1] = x;
     arr[2] = y;
     // console.log(memory);
     // console.log("Yvalue", arr[y]);
     let unknown = true;
-    if (arr[x] in globalMemory) {
-      // console.log("X in memory");
-      if (arr[y] in globalMemory[arr[x]]) {
-        // console.log("Known!");
-        unknown = false;
-      }
-    }
+    // if (arr[x] in globalMemory) {
+    //   // console.log("X in memory");
+    //   if (arr[y] in globalMemory[arr[x]]) {
+    //     // console.log("Known!");
+    //     unknown = false;
+    //   }
+    // }
 
     if (unknown) {
       for (let i = 0; i < length; i += 4) {
@@ -65,10 +67,11 @@ for (let x = 0; x < 99; x++) {
           // console.log(arr);
           if (arr[0] === 19690720) {
             console.log("Sucess with noun + verb", 100 * x + y);
+            break top;
           }
-          arr = originalArr;
+          arr = [...originalArr];
 
-          globalMemory[arr[x]] = { ...globalMemory[arr[x]], [arr[y]]: false };
+          // globalMemory[arr[x]] = { ...globalMemory[arr[x]], [arr[y]]: false };
         } else {
           // console.log(newArr);
 
@@ -78,3 +81,5 @@ for (let x = 0; x < 99; x++) {
     }
   }
 }
+
+console.log("fin");
