@@ -1,7 +1,7 @@
 {
     "python.pythonPath": "/usr/bin/python3",
     "[typescript]": {
-        "editor.defaultFormatter": "rome.rome"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
       },
     "cSpell.words": [
         "Elfs"
