@@ -95,14 +95,6 @@ const part2 = () => {
 
     const toMove = fromColumn.splice(0, quantity);
     toColumn.unshift(...toMove);
-
-    // console.log({ toColumn, fromColumn, move });
-    // for (let i = 0; i < quantity; i++) {
-    //   const topVal = fromColumn.shift();
-    //   toColumn.unshift(topVal);
-    // }
-
-    // console.log({ toColumn, fromColumn, move });
   }
 
   const topRow = keys.map((key) => columns[key][0]);
